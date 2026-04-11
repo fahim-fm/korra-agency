@@ -1,11 +1,11 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
   { value: 50, suffix: "+", label: "Local Brands Served" },
   { value: 200, suffix: "+", label: "Projects Completed" },
-  { value: 3, suffix: "", label: "Sister Creative Brands" },
+  { value: 3, suffix: "", label: "In-House Studios" },
   { value: 98, suffix: "%", label: "Client Satisfaction" },
 ];
 
@@ -19,7 +19,7 @@ function CountUp({ target, suffix }: { target: number; suffix: string }) {
       ([entry]) => {
         if (entry.isIntersecting && !started.current) {
           started.current = true;
-          const duration = 2000;
+          const duration = 1800;
           const steps = 60;
           const increment = target / steps;
           let current = 0;
@@ -40,44 +40,111 @@ function CountUp({ target, suffix }: { target: number; suffix: string }) {
     return () => observer.disconnect();
   }, [target]);
 
-  return (
-    <span ref={ref}>
-      {count}
-      {suffix}
-    </span>
-  );
+  return <span ref={ref}>{count}{suffix}</span>;
 }
 
 export default function Stats() {
   return (
-    <section id="stats" className="py-20 bg-[#111111] border-y border-[#2A2A2A]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section
+      id="stats"
+      style={{
+        padding: "96px 40px",
+        background: "#0C0C0C",
+        borderTop: "1px solid rgba(255,255,255,0.05)",
+        borderBottom: "1px solid rgba(255,255,255,0.05)",
+      }}
+    >
+      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
+        {/* Stats grid */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gap: "1px",
+          background: "rgba(255,255,255,0.04)",
+          borderRadius: "12px",
+          overflow: "hidden",
+        }}
+          className="stats-grid"
+        >
           {stats.map((stat, i) => (
-            <div key={i} className="flex flex-col items-center text-center group">
-              <div className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#C9A84C] font-bold mb-3">
+            <div
+              key={i}
+              style={{
+                padding: "52px 40px",
+                background: "#0C0C0C",
+                textAlign: "center",
+                transition: "background 0.3s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "#0F0F0F")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "#0C0C0C")}
+            >
+              <div style={{
+                fontFamily: "var(--font-playfair), serif",
+                fontSize: "clamp(2.5rem, 4vw, 3.5rem)",
+                color: "#BFA050",
+                fontWeight: 700,
+                lineHeight: 1,
+                marginBottom: "12px",
+              }}>
                 <CountUp target={stat.value} suffix={stat.suffix} />
               </div>
-              <div className="w-8 h-px bg-[#2A2A2A] group-hover:bg-[#C9A84C] transition-colors duration-500 mb-3" />
-              <p className="text-[#888888] text-sm tracking-widest uppercase">
+              <div style={{
+                width: "24px",
+                height: "1px",
+                background: "rgba(191,160,80,0.4)",
+                margin: "0 auto 12px",
+              }} />
+              <p style={{
+                fontSize: "12px",
+                color: "#5A5650",
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                fontWeight: 500,
+              }}>
                 {stat.label}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="mt-16 pt-16 border-t border-[#2A2A2A]">
-          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-12">
-            {["Capture Crown", "Talukder Photography", "Meta Business Partner", "Google Certified"].map((brand) => (
-              <div key={brand} className="text-[#2A2A2A] text-sm tracking-widest uppercase hover:text-[#C9A84C] transition-colors duration-300 cursor-default font-medium">
-                {brand}
-              </div>
-            ))}
-          </div>
+        {/* Partner logos row */}
+        <div style={{
+          marginTop: "64px",
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "48px",
+        }}>
+          {["Capture Crown", "Talukder Photography", "Meta Business Partner", "Google Certified"].map((brand) => (
+            <span
+              key={brand}
+              style={{
+                fontSize: "11.5px",
+                color: "#3A3830",
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                fontWeight: 500,
+                cursor: "default",
+                transition: "color 0.3s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#6A6458")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#3A3830")}
+            >
+              {brand}
+            </span>
+          ))}
         </div>
-
       </div>
+
+      <style>{`
+        @media (min-width: 768px) {
+          .stats-grid {
+            grid-template-columns: repeat(4, 1fr) !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

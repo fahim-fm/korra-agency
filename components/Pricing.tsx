@@ -1,13 +1,12 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 
 const plans = [
   {
     name: "Starter",
-    subtitle: "Perfect for new businesses",
-    price: "15,000",
-    period: "per month",
+    subtitle: "For new businesses",
+    price: 15000,
     description: "Get your digital presence up and running with professional content and basic social media management.",
     features: [
       { text: "Social media management (1 platform)", included: true },
@@ -25,9 +24,8 @@ const plans = [
   },
   {
     name: "Growth",
-    subtitle: "Most popular for scaling brands",
-    price: "35,000",
-    period: "per month",
+    subtitle: "Most popular — scaling brands",
+    price: 35000,
     description: "Full social media management, paid ads, and professional content — everything you need to grow fast.",
     features: [
       { text: "Social media management (2 platforms)", included: true },
@@ -45,9 +43,8 @@ const plans = [
   },
   {
     name: "Full-Service",
-    subtitle: "Complete digital transformation",
-    price: "75,000",
-    period: "per month",
+    subtitle: "Complete transformation",
+    price: 75000,
     description: "The complete Korra system — strategy, visuals, ads, web, and branding all handled for you.",
     features: [
       { text: "Social media management (all platforms)", included: true },
@@ -69,85 +66,189 @@ export default function Pricing() {
   const [billing, setBilling] = useState<"monthly" | "yearly">("monthly");
 
   return (
-    <section id="pricing" className="py-24 bg-[#111111] border-y border-[#2A2A2A]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section
+      id="pricing"
+      style={{
+        padding: "120px 40px",
+        background: "#0A0A0A",
+        borderTop: "1px solid rgba(255,255,255,0.05)",
+        borderBottom: "1px solid rgba(255,255,255,0.05)",
+      }}
+    >
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-8 h-px bg-[#C9A84C]" />
-            <span className="text-[#C9A84C] text-xs tracking-[0.3em] uppercase">Pricing</span>
-            <div className="w-8 h-px bg-[#C9A84C]" />
+        {/* Header — centered */}
+        <div style={{ textAlign: "center", marginBottom: "56px" }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
+            <div style={{ width: "28px", height: "1px", background: "#BFA050", opacity: 0.7 }} />
+            <span style={{ color: "#BFA050", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 500 }}>
+              Pricing
+            </span>
+            <div style={{ width: "28px", height: "1px", background: "#BFA050", opacity: 0.7 }} />
           </div>
-          <h2 className="font-serif text-4xl md:text-5xl text-[#F5F0E8] leading-tight mb-4">
-            Simple, Transparent
-            <br />
-            <span className="text-[#C9A84C] italic">Pricing</span>
+          <h2 style={{
+            fontFamily: "var(--font-playfair), serif",
+            fontSize: "clamp(2rem, 3.5vw, 3rem)",
+            color: "#E8E4DC",
+            fontWeight: 700,
+            lineHeight: 1.2,
+            marginBottom: "16px",
+          }}>
+            Simple, Transparent{" "}
+            <span style={{ color: "#BFA050", fontStyle: "italic" }}>Pricing</span>
           </h2>
-          <p className="text-[#888888] text-lg max-w-xl mx-auto mb-8">
+          <p style={{ fontSize: "1.0625rem", color: "#5A5650", marginBottom: "36px", lineHeight: 1.75 }}>
             No hidden fees. No long-term lock-ins. Just results.
           </p>
 
-          <div className="inline-flex items-center bg-[#0A0A0A] border border-[#2A2A2A] rounded-sm p-1">
-            <button
-              onClick={() => setBilling("monthly")}
-              className={`px-6 py-2 text-sm rounded-sm transition-all duration-300 ${billing === "monthly" ? "bg-[#C9A84C] text-[#0A0A0A] font-semibold" : "text-[#888888] hover:text-[#F5F0E8]"}`}
-            >
-              Monthly
-            </button>
-            <button
-              onClick={() => setBilling("yearly")}
-              className={`px-6 py-2 text-sm rounded-sm transition-all duration-300 ${billing === "yearly" ? "bg-[#C9A84C] text-[#0A0A0A] font-semibold" : "text-[#888888] hover:text-[#F5F0E8]"}`}
-            >
-              Yearly
-              <span className="ml-2 text-[10px] text-[#C9A84C] font-medium">Save 20%</span>
-            </button>
+          {/* Billing toggle */}
+          <div style={{
+            display: "inline-flex",
+            background: "#0D0D0D",
+            border: "1px solid rgba(255,255,255,0.07)",
+            borderRadius: "8px",
+            padding: "4px",
+          }}>
+            {(["monthly", "yearly"] as const).map((b) => (
+              <button
+                key={b}
+                onClick={() => setBilling(b)}
+                style={{
+                  padding: "8px 24px",
+                  fontSize: "12px",
+                  letterSpacing: "0.08em",
+                  textTransform: "capitalize",
+                  fontWeight: 600,
+                  borderRadius: "6px",
+                  border: "none",
+                  background: billing === b ? "#BFA050" : "transparent",
+                  color: billing === b ? "#080808" : "#5A5650",
+                  cursor: "pointer",
+                  transition: "all 0.25s",
+                  position: "relative",
+                }}
+              >
+                {b}
+                {b === "yearly" && (
+                  <span style={{
+                    marginLeft: "6px",
+                    fontSize: "9px",
+                    color: billing === b ? "#080808" : "#BFA050",
+                    fontWeight: 700,
+                    letterSpacing: "0.04em",
+                  }}>
+                    −20%
+                  </span>
+                )}
+              </button>
+            ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Pricing cards */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "1fr",
+          gap: "16px",
+        }}
+          className="pricing-grid"
+        >
           {plans.map((plan) => {
             const price = billing === "yearly"
-              ? Math.floor(parseInt(plan.price.replace(",", "")) * 0.8).toLocaleString()
-              : plan.price;
+              ? Math.floor(plan.price * 0.8).toLocaleString()
+              : plan.price.toLocaleString();
 
             return (
               <div
                 key={plan.name}
-                className={`relative flex flex-col rounded-sm overflow-hidden transition-all duration-500 ${
-                  plan.popular
-                    ? "bg-[#1A1A1A] border-2 border-[#C9A84C] scale-105"
-                    : "bg-[#0A0A0A] border border-[#2A2A2A] hover:border-[#C9A84C]"
-                }`}
+                style={{
+                  background: plan.popular ? "#0D0D0D" : "#080808",
+                  border: plan.popular ? "1px solid rgba(191,160,80,0.35)" : "1px solid rgba(255,255,255,0.06)",
+                  borderRadius: "12px",
+                  overflow: "hidden",
+                  display: "flex",
+                  flexDirection: "column",
+                  transition: "border-color 0.3s",
+                  position: "relative",
+                }}
               >
                 {plan.popular && (
-                  <div className="bg-[#C9A84C] text-[#0A0A0A] text-xs font-bold tracking-widest uppercase text-center py-2">
+                  <div style={{
+                    background: "#BFA050",
+                    color: "#080808",
+                    fontSize: "10px",
+                    fontWeight: 700,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    textAlign: "center",
+                    padding: "8px",
+                  }}>
                     Most Popular
                   </div>
                 )}
 
-                <div className="p-8 flex-1">
-                  <div className="mb-6">
-                    <h3 className="text-[#F5F0E8] text-xl font-serif font-medium mb-1">{plan.name}</h3>
-                    <p className="text-[#888888] text-sm">{plan.subtitle}</p>
+                <div style={{ padding: "40px 40px 32px", flex: 1 }}>
+                  <div style={{ marginBottom: "28px" }}>
+                    <h3 style={{
+                      fontFamily: "var(--font-playfair), serif",
+                      fontSize: "1.375rem",
+                      color: "#E8E4DC",
+                      fontWeight: 700,
+                      marginBottom: "6px",
+                    }}>
+                      {plan.name}
+                    </h3>
+                    <p style={{ fontSize: "13px", color: "#4A4840" }}>{plan.subtitle}</p>
                   </div>
 
-                  <div className="flex items-baseline gap-1 mb-2">
-                    <span className="text-[#C9A84C] text-sm">৳</span>
-                    <span className="text-[#F5F0E8] text-4xl font-serif font-bold">{price}</span>
+                  <div style={{ marginBottom: "8px" }}>
+                    <span style={{ color: "#BFA050", fontSize: "16px", fontWeight: 600 }}>৳</span>
+                    <span style={{
+                      fontFamily: "var(--font-playfair), serif",
+                      fontSize: "2.75rem",
+                      color: "#E8E4DC",
+                      fontWeight: 700,
+                      marginLeft: "4px",
+                      lineHeight: 1,
+                    }}>
+                      {price}
+                    </span>
                   </div>
-                  <p className="text-[#888888] text-xs tracking-wide uppercase mb-6">{plan.period}</p>
+                  <p style={{ fontSize: "11px", color: "#3A3830", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "28px" }}>
+                    per month
+                  </p>
 
-                  <p className="text-[#888888] text-sm leading-relaxed mb-8 pb-8 border-b border-[#2A2A2A]">
+                  <p style={{
+                    fontSize: "14px",
+                    color: "#5A5650",
+                    lineHeight: 1.75,
+                    marginBottom: "28px",
+                    paddingBottom: "28px",
+                    borderBottom: "1px solid rgba(255,255,255,0.05)",
+                  }}>
                     {plan.description}
                   </p>
 
-                  <ul className="space-y-3 mb-8">
+                  <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "12px", marginBottom: "32px" }}>
                     {plan.features.map((feature) => (
-                      <li key={feature.text} className="flex items-start gap-3">
-                        <span className={`mt-0.5 text-sm flex-shrink-0 ${feature.included ? "text-[#C9A84C]" : "text-[#2A2A2A]"}`}>
-                          {feature.included ? "✓" : "✕"}
+                      <li
+                        key={feature.text}
+                        style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}
+                      >
+                        <span style={{
+                          fontSize: "13px",
+                          color: feature.included ? "#BFA050" : "#2A2820",
+                          flexShrink: 0,
+                          marginTop: "2px",
+                          fontWeight: 600,
+                        }}>
+                          {feature.included ? "✓" : "—"}
                         </span>
-                        <span className={`text-sm ${feature.included ? "text-[#BBBBBB]" : "text-[#444444]"}`}>
+                        <span style={{
+                          fontSize: "13.5px",
+                          color: feature.included ? "#8A8680" : "#2A2820",
+                          lineHeight: 1.5,
+                        }}>
                           {feature.text}
                         </span>
                       </li>
@@ -155,14 +256,40 @@ export default function Pricing() {
                   </ul>
                 </div>
 
-                <div className="p-8 pt-0">
+                <div style={{ padding: "0 40px 40px" }}>
                   <a
                     href="#contact"
-                    className={`block text-center py-3 px-6 text-sm font-semibold tracking-widest uppercase rounded-sm transition-all duration-300 ${
-                      plan.popular
-                        ? "bg-[#C9A84C] text-[#0A0A0A] hover:bg-[#E8C97A]"
-                        : "border border-[#2A2A2A] text-[#F5F0E8] hover:border-[#C9A84C] hover:text-[#C9A84C]"
-                    }`}
+                    style={{
+                      display: "block",
+                      textAlign: "center",
+                      padding: "14px 24px",
+                      fontSize: "12px",
+                      fontWeight: 700,
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                      textDecoration: "none",
+                      borderRadius: "6px",
+                      transition: "all 0.3s",
+                      background: plan.popular ? "#BFA050" : "transparent",
+                      border: plan.popular ? "none" : "1px solid rgba(255,255,255,0.1)",
+                      color: plan.popular ? "#080808" : "#7A7670",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (plan.popular) {
+                        (e.currentTarget as HTMLElement).style.background = "#D4B55E";
+                      } else {
+                        (e.currentTarget as HTMLElement).style.borderColor = "rgba(191,160,80,0.4)";
+                        (e.currentTarget as HTMLElement).style.color = "#BFA050";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (plan.popular) {
+                        (e.currentTarget as HTMLElement).style.background = "#BFA050";
+                      } else {
+                        (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)";
+                        (e.currentTarget as HTMLElement).style.color = "#7A7670";
+                      }
+                    }}
                   >
                     {plan.cta}
                   </a>
@@ -172,14 +299,29 @@ export default function Pricing() {
           })}
         </div>
 
-        <div className="mt-16 text-center">
-          <p className="text-[#888888] text-sm mb-2">Need a custom package?</p>
-          <a href="#contact" className="text-[#C9A84C] text-sm hover:text-[#E8C97A] transition-colors duration-300 underline underline-offset-4">
+        {/* Custom package */}
+        <div style={{ textAlign: "center", marginTop: "48px" }}>
+          <p style={{ fontSize: "14.5px", color: "#4A4840", marginBottom: "8px" }}>
+            Need a custom package?
+          </p>
+          <a
+            href="#contact"
+            style={{ color: "#6A6050", fontSize: "13.5px", textDecoration: "underline", textUnderlineOffset: "4px", transition: "color 0.3s" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#BFA050")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "#6A6050")}
+          >
             Let us build one for you →
           </a>
         </div>
-
       </div>
+
+      <style>{`
+        @media (min-width: 900px) {
+          .pricing-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
