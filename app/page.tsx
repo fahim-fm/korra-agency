@@ -5,6 +5,7 @@ import Services from "@/components/Services";
 import Approach from "@/components/Approach";
 import Portfolio from "@/components/Portfolio";
 import SisterBrands from "@/components/SisterBrands";
+import Team from "@/components/Team";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import Contact from "@/components/Contact";
@@ -19,6 +20,7 @@ export default function Home() {
       <Approach />
       <Portfolio />
       <SisterBrands />
+      <Team />
       <Testimonials />
       <Pricing />
       <Contact />
