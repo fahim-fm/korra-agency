@@ -141,7 +141,7 @@ export default function Navbar() {
                   "translateY(0)";
               }}
             >
-              Talk to Us →
+              Talk to Us
             </a>
 
             {/* Mobile toggle */}

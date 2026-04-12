@@ -275,9 +275,9 @@ export default function Contact() {
                     onMouseEnter={(e) => { if (!loading) (e.currentTarget as HTMLElement).style.boxShadow = "0 10px 32px rgba(212,168,58,0.45)"; }}
                     onMouseLeave={(e) => { if (!loading) (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 24px rgba(212,168,58,0.28)"; }}
                   >
-                    {loading ? "Sending your message..." : "Send Message — It's Free →"}
+                    {loading ? "Sending your message..." : "Send Message"}
                   </button>
-                  <p style={{ fontSize: "11.5px", color: "#2A2820", textAlign: "center" }}>
+                  <p style={{ fontSize: "11.5px", color: "#af863a", textAlign: "center" }}>
                     We reply within 24 hours. No spam, ever.
                   </p>
                 </form>
@@ -334,7 +334,7 @@ export default function Contact() {
               { title: "Company", items: [["Our Work","#portfolio"],["Meet the Team","#team"],["How We Work","#approach"],["Pricing","#pricing"],["Contact Us","#contact"]] },
             ].map((col) => (
               <div key={col.title}>
-                <p style={{ fontSize: "10.5px", color: "#2A2820", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "14px", fontWeight: 500 }}>{col.title}</p>
+                <p style={{ fontSize: "10.5px", color: "#FFFFFF", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: "14px", fontWeight: 500 }}>{col.title}</p>
                 <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "10px" }}>
                   {col.items.map(([label, href]) => (
                     <li key={label}>

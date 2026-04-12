@@ -112,12 +112,12 @@ export default function Approach() {
                   fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600,
                   padding: "4px 12px",
                   border: `1px solid ${activeStep >= i ? "rgba(201,168,76,0.4)" : "rgba(255,255,255,0.06)"}`,
-                  color: activeStep >= i ? "#C9A84C" : "#2A2820",
+                  color: activeStep >= i ? "#C9A84C" : "#FFFFFF",
                   borderRadius: "4px", transition: "all 0.5s",
                 }}>{step.phase}</span>
                 <h3 style={{
                   fontSize: "1.125rem", fontWeight: 600,
-                  color: activeStep >= i ? "#EDE8DF" : "#2A2820",
+                  color: activeStep >= i ? "#EDE8DF" : "#FFFFFF",
                   letterSpacing: "-0.01em", transition: "color 0.5s",
                 }}>{step.headline}</h3>
               </div>

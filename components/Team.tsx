@@ -1,23 +1,14 @@
 "use client";
 
-import { useEffect } from "react";
-
-// ─── TEAM PHOTOS SETUP ────────────────────────────────────────────────────────
-// Place photos in /public/team/ folder.
-// Recommended: square images, minimum 400×400px, JPG or WebP.
-// Example: /public/team/arif-hossain.jpg
-// If image is not found, the card shows initials avatar automatically.
-// ─────────────────────────────────────────────────────────────────────────────
+import { useEffect, useState } from "react";
 
 const team = [
   {
     name: "Arif Hossain",
     role: "Founder & CEO",
     department: "Leadership",
-    bio: "10+ years in digital marketing. Arif built Korra with a vision to help Bangladeshi businesses compete in the digital world.",
-    expertise: ["Brand Strategy", "Business Development", "Campaign Management"],
     initials: "AH",
-    photo: "/team/fahim1.jpg",   // ← add your photo here
+    photo: "/team/fahim1.jpg",
     instagram: "https://instagram.com/",
     linkedin: "https://linkedin.com/",
     facebook: "https://facebook.com/",
@@ -26,8 +17,6 @@ const team = [
     name: "Mehrin Akter",
     role: "Head of Creative",
     department: "Creative",
-    bio: "Award-winning art director with visual campaigns for 50+ brands. Mehrin brings world-class creative direction to every project.",
-    expertise: ["Art Direction", "Brand Identity", "Visual Strategy"],
     initials: "MA",
     photo: "/team/mehrin-akter.jpg",
     instagram: "https://instagram.com/",
@@ -38,8 +27,6 @@ const team = [
     name: "Rafi Talukder",
     role: "Lead Photographer",
     department: "Creative",
-    bio: "Founder of Talukder Photography. Rafi's storytelling through a lens has elevated hundreds of brands across Bangladesh.",
-    expertise: ["Food Photography", "Cinematography", "Product Shoots"],
     initials: "RT",
     photo: "/team/rafi-talukder.jpg",
     instagram: "https://instagram.com/",
@@ -50,8 +37,6 @@ const team = [
     name: "Nusrat Jahan",
     role: "Meta Ads Specialist",
     department: "Marketing",
-    bio: "Certified Meta ads expert with a track record of delivering 5–10× ROAS for clients across retail, F&B, and real estate.",
-    expertise: ["Meta Ads", "Audience Targeting", "Funnel Optimization"],
     initials: "NJ",
     photo: "/team/nusrat-jahan.jpg",
     instagram: "https://instagram.com/",
@@ -62,8 +47,6 @@ const team = [
     name: "Tanvir Ahmed",
     role: "Social Media Manager",
     department: "Marketing",
-    bio: "Grew 20+ brand accounts from zero to thriving communities. Tanvir combines data insight with creative instinct.",
-    expertise: ["Community Management", "Content Strategy", "Instagram Growth"],
     initials: "TA",
     photo: "/team/tanvir-ahmed.jpg",
     instagram: "https://instagram.com/",
@@ -74,8 +57,6 @@ const team = [
     name: "Sumaia Khanam",
     role: "Web Designer",
     department: "Growth",
-    bio: "Full-stack designer crafting conversion-focused websites. Sumaia's sites don't just look great — they generate leads.",
-    expertise: ["UI/UX Design", "Next.js Development", "SEO Architecture"],
     initials: "SK",
     photo: "/team/sumaia-khanam.jpg",
     instagram: "https://instagram.com/",
@@ -91,7 +72,6 @@ const deptColor: Record<string, string> = {
   Growth: "#D4A83A",
 };
 
-// Inline SVG icons for social media
 const InstagramIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
@@ -99,6 +79,7 @@ const InstagramIcon = () => (
     <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
   </svg>
 );
+
 const LinkedInIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
@@ -106,6 +87,7 @@ const LinkedInIcon = () => (
     <circle cx="4" cy="4" r="2"/>
   </svg>
 );
+
 const FacebookIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
@@ -121,7 +103,7 @@ function MemberCard({ member, index }: { member: typeof team[0]; index: number }
       style={{
         background: "#1A1713",
         border: "1px solid rgba(255,255,255,0.09)",
-        borderRadius: "16px",
+        borderRadius: "12px",
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
@@ -130,10 +112,12 @@ function MemberCard({ member, index }: { member: typeof team[0]; index: number }
     >
       {/* Photo area */}
       <div style={{
-        height: "clamp(280px,35vw,380px)",
+        width: "100%",
+        aspectRatio: "1 / 1",
         background: "linear-gradient(160deg, #1F1C18, #13110E)",
         position: "relative",
         overflow: "hidden",
+        flexShrink: 0,
       }}>
         {!imgError ? (
           <img
@@ -141,13 +125,14 @@ function MemberCard({ member, index }: { member: typeof team[0]; index: number }
             alt={member.name}
             onError={() => setImgError(true)}
             style={{
-               width: "100%", height: "100%",
-               objectFit: "cover", objectPosition: "center",
-               display: "block",
-             }}
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center",
+              display: "block",
+            }}
           />
         ) : (
-          /* Fallback initials avatar */
           <>
             <div style={{
               position: "absolute", inset: 0,
@@ -181,13 +166,11 @@ function MemberCard({ member, index }: { member: typeof team[0]; index: number }
             </div>
           </>
         )}
-        {/* Gradient overlay for text legibility */}
         <div style={{
           position: "absolute", bottom: 0, left: 0, right: 0, height: "80px",
           background: "linear-gradient(to top, rgba(26,23,19,0.9), transparent)",
           pointerEvents: "none",
         }} />
-        {/* Dept badge */}
         <div style={{
           position: "absolute", top: "12px", right: "12px",
           padding: "4px 10px",
@@ -201,57 +184,45 @@ function MemberCard({ member, index }: { member: typeof team[0]; index: number }
       </div>
 
       {/* Info */}
-      <div style={{ padding: "20px 22px 22px", flex: 1, display: "flex", flexDirection: "column" }}>
-        <h3 style={{ fontSize: "1.025rem", color: "#EDE8DF", fontWeight: 700, marginBottom: "3px" }}>
-          {member.name}
-        </h3>
-        <p style={{ fontSize: "11px", color: "#D4A83A", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 600, marginBottom: "12px" }}>
-          {member.role}
-        </p>
-        <p style={{ fontSize: "13.5px", color: "#6A6458", lineHeight: 1.72, marginBottom: "14px", flex: 1 }}>
-          {member.bio}
-        </p>
-
-        {/* Expertise */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "5px", marginBottom: "16px" }}>
-          {member.expertise.map((item) => (
-            <span key={item} style={{
-              fontSize: "10px", color: "#5A5448",
-              border: "1px solid rgba(255,255,255,0.07)",
-              padding: "3px 8px", borderRadius: "4px",
-            }}>{item}</span>
-          ))}
+      <div style={{ padding: "12px 14px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center", textAlign: "center" }}>
+        <div>
+          <h3 style={{ fontSize: "0.9rem", color: "#EDE8DF", fontWeight: 700, marginBottom: "1px" }}>
+            {member.name}
+          </h3>
+          <p style={{ fontSize: "9px", color: "#D4A83A", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 600 }}>
+            {member.role}
+          </p>
         </div>
 
         {/* Social icons */}
         <div style={{
-          paddingTop: "14px",
+          paddingTop: "8px",
           borderTop: "1px solid rgba(255,255,255,0.07)",
-          display: "flex", gap: "8px",
+          display: "flex", gap: "5px", justifyContent: "center",
         }}>
           {[
-            { href: member.instagram, icon: <InstagramIcon />, label: "Instagram" },
-            { href: member.linkedin, icon: <LinkedInIcon />, label: "LinkedIn" },
-            { href: member.facebook, icon: <FacebookIcon />, label: "Facebook" },
+            { href: member.instagram, icon: <InstagramIcon />, label: "Instagram", color: "#E4405F", hoverBg: "rgba(228,64,95,0.1)" },
+            { href: member.linkedin, icon: <LinkedInIcon />, label: "LinkedIn", color: "#0A66C2", hoverBg: "rgba(10,102,194,0.1)" },
+            { href: member.facebook, icon: <FacebookIcon />, label: "Facebook", color: "#1877F2", hoverBg: "rgba(24,119,242,0.1)" },
           ].map((s) => (
             <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
               title={s.label}
               style={{
-                width: "32px", height: "32px",
+                width: "26px", height: "26px",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                border: "1px solid rgba(255,255,255,0.09)",
-                borderRadius: "7px",
-                color: "#4A4438",
+                border: `1px solid rgba(255,255,255,0.09)`,
+                borderRadius: "5px",
+                color: "#6A6460",
                 textDecoration: "none",
                 transition: "all 0.25s",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.color = "#D4A83A";
-                (e.currentTarget as HTMLElement).style.borderColor = "rgba(212,168,58,0.35)";
-                (e.currentTarget as HTMLElement).style.background = "rgba(212,168,58,0.08)";
+                (e.currentTarget as HTMLElement).style.color = s.color;
+                (e.currentTarget as HTMLElement).style.borderColor = s.color;
+                (e.currentTarget as HTMLElement).style.background = s.hoverBg;
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.color = "#4A4438";
+                (e.currentTarget as HTMLElement).style.color = "#6A6460";
                 (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.09)";
                 (e.currentTarget as HTMLElement).style.background = "transparent";
               }}
@@ -262,9 +233,6 @@ function MemberCard({ member, index }: { member: typeof team[0]; index: number }
     </div>
   );
 }
-
-// Need useState inside MemberCard
-import { useState } from "react";
 
 export default function Team() {
   useEffect(() => {
@@ -307,8 +275,8 @@ export default function Team() {
 
         <div style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(clamp(260px,28vw,320px), 1fr))",
-          gap: "14px",
+          gridTemplateColumns: "repeat(auto-fill, minmax(clamp(240px,22vw,280px), 1fr))",
+          gap: "12px",
         }}>
           {team.map((member, i) => (
             <MemberCard key={member.name} member={member} index={i} />

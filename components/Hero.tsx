@@ -61,7 +61,7 @@ export default function Hero() {
 
         {/* Status pill */}
         <div style={{
-          display: "inline-flex", alignItems: "center", gap: "8px",
+          display: "inline-flex", alignItems: "center", gap: "6px",
           padding: "6px 16px",
           border: "1px solid rgba(212,168,58,0.4)",
           borderRadius: "100px",
@@ -75,7 +75,7 @@ export default function Hero() {
             animation: "pulseGlow 2s ease-in-out infinite",
           }} />
           <span style={{ fontSize: "11px", color: "#D4A83A", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600 }}>
-            Full-Service Digital Marketing · Dhaka, BD
+            Full-Service Digital Marketing · Cumilla, BD
           </span>
         </div>
 
@@ -139,7 +139,7 @@ export default function Hero() {
               (e.currentTarget as HTMLElement).style.boxShadow = "0 8px 32px rgba(212,168,58,0.35)";
             }}
           >
-            Talk to Us — It's Free →
+            Talk to Us — It's Free 
           </a>
           <a href="#portfolio" style={{
             padding: "clamp(12px,2vw,16px) clamp(24px,4vw,40px)",

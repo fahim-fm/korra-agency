@@ -108,11 +108,11 @@ export default function Stats() {
         }}>
           {["Capture Crown", "Talukder Photography", "Meta Business Partner", "Google Certified"].map((brand) => (
             <span key={brand} style={{
-              fontSize: "11px", color: "#2A2820", letterSpacing: "0.16em",
+              fontSize: "11px", color: "#FFFFFF", letterSpacing: "0.16em",
               textTransform: "uppercase", fontWeight: 500, cursor: "default", transition: "color 0.25s",
             }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#5A5448")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#2A2820")}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#D4A83A")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#FFFFFF")}
             >{brand}</span>
           ))}
         </div>
