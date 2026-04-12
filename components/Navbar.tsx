@@ -5,9 +5,8 @@ import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "Services", href: "#services" },
-  { label: "Work", href: "#portfolio" },
+  { label: "Our Work", href: "#portfolio" },
   { label: "Team", href: "#team" },
-  { label: "Approach", href: "#approach" },
   { label: "Pricing", href: "#pricing" },
   { label: "Contact", href: "#contact" },
 ];
@@ -17,106 +16,139 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const fn = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
   }, []);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
+  const navBg = scrolled
+    ? "rgba(19,17,14,0.96)"
+    : "transparent";
 
   return (
     <>
       <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
-        transition: "all 0.45s ease",
-        backgroundColor: scrolled ? "rgba(13,11,8,0.95)" : "transparent",
-        backdropFilter: scrolled ? "blur(16px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(201,168,76,0.1)" : "1px solid transparent",
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
+        transition: "background 0.4s, border-color 0.4s, backdrop-filter 0.4s",
+        background: navBg,
+        backdropFilter: scrolled ? "blur(18px)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(212,168,58,0.12)" : "1px solid transparent",
       }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 32px" }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "72px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 clamp(20px,4vw,40px)" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "70px" }}>
 
-            <a href="#" style={{ display: "flex", alignItems: "center", gap: "11px", textDecoration: "none" }}>
-              <div style={{
-                width: "36px", height: "36px",
-                background: "linear-gradient(135deg, #C9A84C, #E8C97A)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                borderRadius: "7px",
-                boxShadow: "0 4px 16px rgba(201,168,76,0.3)",
-              }}>
-                <span style={{ color: "#0D0B08", fontWeight: 800, fontSize: "17px", fontFamily: "var(--font-playfair), serif" }}>K</span>
-              </div>
-              <div style={{ lineHeight: 1.2 }}>
-                <div style={{ color: "#EDE8DF", fontSize: "15.5px", fontWeight: 700, letterSpacing: "0.04em" }}>Korra</div>
-                <div style={{ color: "#C9A84C", fontSize: "8.5px", letterSpacing: "0.22em", textTransform: "uppercase", opacity: 0.8 }}>Marketing Agency</div>
-              </div>
+            {/* Logo */}
+            <a href="#" style={{ display: "flex", alignItems: "center", textDecoration: "none", flexShrink: 0, padding: "2px", background: "linear-gradient(135deg, #D4A83A, #F0C84A)", 
+            borderRadius: "2px",  boxShadow: "0 4px 18px rgba(212,168,58,0.3)",
+              transition: "box-shadow 0.3s, transform 0.3s", }}>
+              <img src="/korraa.png" alt="Korra" style={{ height: "50px", width: "auto" }} />
             </a>
-
-            <div style={{ display: "none", alignItems: "center", gap: "32px" }} className="md-nav">
+            {/* Desktop nav */}
+            <div style={{ display: "none", alignItems: "center", gap: "28px" }} className="desk-nav">
               {navLinks.map((link) => (
                 <a key={link.label} href={link.href} style={{
-                  color: "#6A6460", fontSize: "13px", letterSpacing: "0.04em",
-                  textDecoration: "none", transition: "color 0.3s",
+                  color: "#8A8070", fontSize: "13.5px",
+                  textDecoration: "none", transition: "color 0.25s",
+                  letterSpacing: "0.02em",
                 }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#EDE8DF")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "#6A6460")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "#8A8070")}
                 >{link.label}</a>
               ))}
             </div>
 
-            <a href="#contact" className="md-nav" style={{
+            {/* Desktop CTA */}
+            <a href="#contact" className="desk-nav" style={{
               display: "none",
               padding: "9px 22px",
-              background: "linear-gradient(135deg, #C9A84C, #E8C97A)",
-              color: "#0D0B08",
-              fontSize: "11.5px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
-              textDecoration: "none", borderRadius: "6px",
-              boxShadow: "0 4px 16px rgba(201,168,76,0.25)",
-              transition: "box-shadow 0.3s",
+              background: "linear-gradient(135deg, #D4A83A, #F0C84A)",
+              color: "#13110E", fontSize: "12px", fontWeight: 700,
+              letterSpacing: "0.08em", textTransform: "uppercase",
+              textDecoration: "none", borderRadius: "7px",
+              boxShadow: "0 4px 18px rgba(212,168,58,0.3)",
+              transition: "box-shadow 0.3s, transform 0.3s",
+              whiteSpace: "nowrap",
             }}
-              onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 24px rgba(201,168,76,0.45)"}
-              onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 16px rgba(201,168,76,0.25)"}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 28px rgba(212,168,58,0.5)";
+                (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 18px rgba(212,168,58,0.3)";
+                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+              }}
             >
-              Free Audit
+              Talk to Us →
             </a>
 
-            <button onClick={() => setMenuOpen(!menuOpen)}
-              style={{ background: "none", border: "none", color: "#EDE8DF", cursor: "pointer", padding: "6px" }}
-              className="md-hide">
+            {/* Mobile toggle */}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              style={{ background: "none", border: "none", color: "#EDE8DF", cursor: "pointer", padding: "6px", lineHeight: 0 }}
+              className="mob-toggle"
+              aria-label="Toggle menu"
+            >
               {menuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
       </nav>
 
+      {/* Mobile full-screen menu */}
       <div style={{
-        position: "fixed", inset: 0, zIndex: 40,
-        background: "rgba(13,11,8,0.98)", backdropFilter: "blur(20px)",
-        display: "flex", flexDirection: "column", justifyContent: "center",
-        alignItems: "center", gap: "28px",
+        position: "fixed", inset: 0, zIndex: 99,
+        background: "rgba(13,11,8,0.98)",
+        backdropFilter: "blur(20px)",
+        display: "flex", flexDirection: "column",
+        justifyContent: "center", alignItems: "center",
+        gap: "0",
         opacity: menuOpen ? 1 : 0,
         pointerEvents: menuOpen ? "auto" : "none",
-        transition: "opacity 0.4s ease",
+        transition: "opacity 0.35s ease",
       }}>
-        {navLinks.map((link) => (
-          <a key={link.label} href={link.href} onClick={() => setMenuOpen(false)} style={{
-            fontSize: "1.9rem", color: "#EDE8DF",
-            textDecoration: "none", fontFamily: "var(--font-playfair), serif",
-            fontStyle: "italic", transition: "color 0.3s",
-          }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#C9A84C")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "#EDE8DF")}
-          >{link.label}</a>
-        ))}
-        <a href="#contact" onClick={() => setMenuOpen(false)} style={{
-          marginTop: "6px", padding: "12px 32px",
-          background: "linear-gradient(135deg,#C9A84C,#E8C97A)",
-          color: "#0D0B08", fontSize: "12px", fontWeight: 700,
-          letterSpacing: "0.12em", textTransform: "uppercase",
-          textDecoration: "none", borderRadius: "6px",
-        }}>Get Free Audit</a>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", width: "100%", padding: "0 32px" }}>
+          {navLinks.map((link, i) => (
+            <a key={link.label} href={link.href}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                fontSize: "clamp(1.6rem, 6vw, 2.2rem)",
+                color: "#EDE8DF",
+                textDecoration: "none",
+                fontFamily: "var(--font-playfair), serif",
+                fontStyle: "italic",
+                transition: "color 0.25s",
+                padding: "10px 0",
+                textAlign: "center",
+                width: "100%",
+                borderBottom: i < navLinks.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#D4A83A")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#EDE8DF")}
+            >{link.label}</a>
+          ))}
+          <a href="#contact" onClick={() => setMenuOpen(false)} style={{
+            marginTop: "28px",
+            padding: "14px 40px",
+            background: "linear-gradient(135deg,#D4A83A,#F0C84A)",
+            color: "#13110E", fontSize: "13px", fontWeight: 700,
+            letterSpacing: "0.1em", textTransform: "uppercase",
+            textDecoration: "none", borderRadius: "8px",
+            boxShadow: "0 6px 24px rgba(212,168,58,0.3)",
+          }}>Talk to Us →</a>
+        </div>
       </div>
 
       <style>{`
-        @media(min-width:768px){.md-nav{display:flex!important}.md-hide{display:none!important}}
+        @media (min-width: 768px) {
+          .desk-nav { display: flex !important; }
+          .mob-toggle { display: none !important; }
+        }
       `}</style>
     </>
   );

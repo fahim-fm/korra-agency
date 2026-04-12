@@ -1,7 +1,7 @@
 "use client";
+import { useEffect } from "react";
 
 import { useState } from "react";
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const plans = [
   {
@@ -52,13 +52,13 @@ const plans = [
 ];
 
 export default function Pricing() {
-  useScrollReveal();
+  
   const [billing, setBilling] = useState<"monthly" | "yearly">("monthly");
 
   return (
     <section id="pricing" style={{
-      padding: "80px 32px",
-      background: "#0F0D0A",
+      padding: "clamp(56px,8vw,88px) clamp(20px,5vw,40px)",
+      background: "#15130F",
       borderTop: "1px solid rgba(201,168,76,0.08)",
       borderBottom: "1px solid rgba(201,168,76,0.08)",
     }}>
@@ -66,9 +66,9 @@ export default function Pricing() {
 
         <div className="reveal" style={{ textAlign: "center", marginBottom: "48px" }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
-            <div style={{ width: "24px", height: "1px", background: "#C9A84C", opacity: 0.6 }} />
-            <span style={{ color: "#C9A84C", fontSize: "10.5px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600 }}>Pricing</span>
-            <div style={{ width: "24px", height: "1px", background: "#C9A84C", opacity: 0.6 }} />
+            <div style={{ width: "24px", height: "1px", background: "#D4A83A", opacity: 0.6 }} />
+            <span style={{ color: "#D4A83A", fontSize: "10.5px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600 }}>Pricing</span>
+            <div style={{ width: "24px", height: "1px", background: "#D4A83A", opacity: 0.6 }} />
           </div>
           <h2 style={{
             fontFamily: "var(--font-playfair), serif",
@@ -76,13 +76,13 @@ export default function Pricing() {
             color: "#EDE8DF", fontWeight: 700, lineHeight: 1.2, marginBottom: "12px",
           }}>
             Simple, Transparent{" "}
-            <span style={{ color: "#C9A84C", fontStyle: "italic" }}>Pricing</span>
+            <span style={{ color: "#D4A83A", fontStyle: "italic" }}>Pricing</span>
           </h2>
-          <p style={{ fontSize: "15px", color: "#5A5650", marginBottom: "28px" }}>No hidden fees. No long-term lock-ins.</p>
+          <p style={{ fontSize: "15px", color: "#6A6458", marginBottom: "28px" }}>No hidden fees. No long-term lock-ins.</p>
 
           <div style={{
             display: "inline-flex",
-            background: "#0D0B08",
+            background: "#13110E",
             border: "1px solid rgba(255,255,255,0.07)",
             borderRadius: "8px", padding: "3px",
           }}>
@@ -91,11 +91,11 @@ export default function Pricing() {
                 padding: "7px 22px", fontSize: "12px", letterSpacing: "0.06em",
                 textTransform: "capitalize", fontWeight: 600, borderRadius: "6px",
                 border: "none",
-                background: billing === b ? "linear-gradient(135deg,#C9A84C,#E8C97A)" : "transparent",
-                color: billing === b ? "#0D0B08" : "#4A4640",
+                background: billing === b ? "linear-gradient(135deg,#D4A83A,#F0C84A)" : "transparent",
+                color: billing === b ? "#13110E" : "#4A4640",
                 cursor: "pointer", transition: "all 0.25s",
               }}>
-                {b}{b === "yearly" && <span style={{ marginLeft: "5px", fontSize: "9px", color: billing === b ? "#0D0B08" : "#C9A84C", fontWeight: 700 }}>−20%</span>}
+                {b}{b === "yearly" && <span style={{ marginLeft: "5px", fontSize: "9px", color: billing === b ? "#13110E" : "#D4A83A", fontWeight: 700 }}>−20%</span>}
               </button>
             ))}
           </div>
@@ -111,7 +111,7 @@ export default function Pricing() {
               <div key={plan.name}
                 className={`reveal reveal-delay-${i + 1} glow-card`}
                 style={{
-                  background: plan.popular ? "linear-gradient(160deg, #171410, #110E0B)" : "#100E0B",
+                  background: plan.popular ? "linear-gradient(160deg, #171410, #110E0B)" : "#1A1713",
                   border: plan.popular ? "1px solid rgba(201,168,76,0.3)" : "1px solid rgba(255,255,255,0.07)",
                   borderRadius: "14px", overflow: "hidden",
                   display: "flex", flexDirection: "column",
@@ -121,8 +121,8 @@ export default function Pricing() {
                 {plan.popular && (
                   <>
                     <div style={{
-                      background: "linear-gradient(135deg,#C9A84C,#E8C97A)",
-                      color: "#0D0B08", fontSize: "9.5px", fontWeight: 700,
+                      background: "linear-gradient(135deg,#D4A83A,#F0C84A)",
+                      color: "#13110E", fontSize: "9.5px", fontWeight: 700,
                       letterSpacing: "0.14em", textTransform: "uppercase",
                       textAlign: "center", padding: "7px",
                     }}>Most Popular</div>
@@ -140,25 +140,25 @@ export default function Pricing() {
                     <h3 style={{ fontFamily: "var(--font-playfair), serif", fontSize: "1.25rem", color: "#EDE8DF", fontWeight: 700, marginBottom: "4px" }}>
                       {plan.name}
                     </h3>
-                    <p style={{ fontSize: "12px", color: "#3A3630" }}>{plan.subtitle}</p>
+                    <p style={{ fontSize: "12px", color: "#4A4438" }}>{plan.subtitle}</p>
                   </div>
 
                   <div style={{ marginBottom: "6px" }}>
-                    <span style={{ color: "#C9A84C", fontSize: "15px", fontWeight: 600 }}>৳</span>
+                    <span style={{ color: "#D4A83A", fontSize: "15px", fontWeight: 600 }}>৳</span>
                     <span style={{
                       fontFamily: "var(--font-playfair), serif",
                       fontSize: "2.5rem",
-                      background: "linear-gradient(135deg, #C9A84C, #F0D080)",
+                      background: "linear-gradient(135deg, #D4A83A, #F0D080)",
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                       backgroundClip: "text",
                       fontWeight: 700, marginLeft: "3px", lineHeight: 1,
                     }}>{price}</span>
                   </div>
-                  <p style={{ fontSize: "10.5px", color: "#2A2820", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "20px" }}>per month</p>
+                  <p style={{ fontSize: "10.5px", color: "#A89968", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "20px" }}>per month</p>
 
                   <p style={{
-                    fontSize: "13.5px", color: "#4A4640", lineHeight: 1.72,
+                    fontSize: "13.5px", color: "#5A5448", lineHeight: 1.72,
                     marginBottom: "20px", paddingBottom: "20px",
                     borderBottom: "1px solid rgba(255,255,255,0.05)",
                   }}>{plan.description}</p>
@@ -168,10 +168,10 @@ export default function Pricing() {
                       <li key={feature.text} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
                         <span style={{
                           fontSize: "11px",
-                          color: feature.included ? "#C9A84C" : "#1E1C18",
+                          color: feature.included ? "#D4A83A" : "#1E1C18",
                           flexShrink: 0, marginTop: "2px", fontWeight: 700,
                         }}>{feature.included ? "✓" : "—"}</span>
-                        <span style={{ fontSize: "13px", color: feature.included ? "#7A7670" : "#2A2820", lineHeight: 1.5 }}>
+                        <span style={{ fontSize: "13px", color: feature.included ? "#7A7670" : "#A89968", lineHeight: 1.5 }}>
                           {feature.text}
                         </span>
                       </li>
@@ -185,15 +185,15 @@ export default function Pricing() {
                     padding: "13px 20px",
                     fontSize: "11.5px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
                     textDecoration: "none", borderRadius: "7px", transition: "all 0.3s",
-                    background: plan.popular ? "linear-gradient(135deg,#C9A84C,#E8C97A)" : "transparent",
+                    background: plan.popular ? "linear-gradient(135deg,#D4A83A,#F0C84A)" : "transparent",
                     border: plan.popular ? "none" : "1px solid rgba(255,255,255,0.1)",
-                    color: plan.popular ? "#0D0B08" : "#5A5650",
+                    color: plan.popular ? "#13110E" : "#5A5650",
                     boxShadow: plan.popular ? "0 6px 24px rgba(201,168,76,0.25)" : "none",
                   }}
                     onMouseEnter={(e) => {
                       if (!plan.popular) {
                         (e.currentTarget as HTMLElement).style.borderColor = "rgba(201,168,76,0.4)";
-                        (e.currentTarget as HTMLElement).style.color = "#C9A84C";
+                        (e.currentTarget as HTMLElement).style.color = "#D4A83A";
                       }
                     }}
                     onMouseLeave={(e) => {
@@ -210,9 +210,9 @@ export default function Pricing() {
         </div>
 
         <div className="reveal" style={{ textAlign: "center", marginTop: "36px" }}>
-          <p style={{ fontSize: "13.5px", color: "#3A3630" }}>
+          <p style={{ fontSize: "13.5px", color: "#4A4438" }}>
             Need a custom package?{" "}
-            <a href="#contact" style={{ color: "#C9A84C", textDecoration: "none", borderBottom: "1px solid rgba(201,168,76,0.3)" }}>
+            <a href="#contact" style={{ color: "#D4A83A", textDecoration: "none", borderBottom: "1px solid rgba(201,168,76,0.3)" }}>
               Let us build one for you →
             </a>
           </p>

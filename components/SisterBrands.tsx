@@ -1,6 +1,6 @@
 "use client";
+import { useEffect } from "react";
 
-import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const brands = [
   {
@@ -18,28 +18,28 @@ const brands = [
 ];
 
 export default function SisterBrands() {
-  useScrollReveal();
+  
 
   return (
     <section id="sister-brands" style={{
-      padding: "80px 32px",
-      background: "#0D0B08",
+      padding: "clamp(56px,8vw,88px) clamp(20px,5vw,40px)",
+      background: "#13110E",
       borderTop: "1px solid rgba(201,168,76,0.08)",
     }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
         <div className="reveal" style={{ textAlign: "center", marginBottom: "52px" }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
-            <div style={{ width: "24px", height: "1px", background: "#C9A84C", opacity: 0.6 }} />
-            <span style={{ color: "#C9A84C", fontSize: "10.5px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600 }}>Our Creative Family</span>
-            <div style={{ width: "24px", height: "1px", background: "#C9A84C", opacity: 0.6 }} />
+            <div style={{ width: "24px", height: "1px", background: "#D4A83A", opacity: 0.6 }} />
+            <span style={{ color: "#D4A83A", fontSize: "10.5px", letterSpacing: "0.2em", textTransform: "uppercase", fontWeight: 600 }}>Our Creative Family</span>
+            <div style={{ width: "24px", height: "1px", background: "#D4A83A", opacity: 0.6 }} />
           </div>
           <h2 style={{
             fontFamily: "var(--font-playfair), serif",
             fontSize: "clamp(1.9rem, 3.5vw, 2.8rem)",
             color: "#EDE8DF", fontWeight: 700, lineHeight: 1.2, marginBottom: "14px",
           }}>In-House Creative Studio</h2>
-          <p style={{ fontSize: "15px", color: "#5A5650", maxWidth: "520px", margin: "0 auto", lineHeight: 1.72 }}>
+          <p style={{ fontSize: "15px", color: "#6A6458", maxWidth: "520px", margin: "0 auto", lineHeight: 1.72 }}>
             We own our creative studios — not outsourced. Faster delivery, tighter quality, unified vision.
           </p>
         </div>
@@ -49,7 +49,7 @@ export default function SisterBrands() {
             <div key={brand.name}
               className={`reveal reveal-delay-${i + 1} glow-card`}
               style={{
-                background: "#100E0B",
+                background: "#1A1713",
                 border: "1px solid rgba(255,255,255,0.07)",
                 borderRadius: "14px",
                 padding: "40px",
@@ -76,19 +76,19 @@ export default function SisterBrands() {
                     <span style={{
                       fontFamily: "var(--font-playfair), serif",
                       fontWeight: 800, fontSize: "14px",
-                      background: "linear-gradient(135deg, #C9A84C, #F0D080)",
+                      background: "linear-gradient(135deg, #D4A83A, #F0D080)",
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                       backgroundClip: "text",
                     }}>{brand.initials}</span>
                   </div>
                   <h3 style={{ fontFamily: "var(--font-playfair), serif", fontSize: "1.3rem", color: "#EDE8DF", fontWeight: 700, marginBottom: "4px" }}>{brand.name}</h3>
-                  <p style={{ fontSize: "10px", color: "#C9A84C", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600 }}>{brand.type}</p>
+                  <p style={{ fontSize: "10px", color: "#D4A83A", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600 }}>{brand.type}</p>
                 </div>
-                <span style={{ fontSize: "9.5px", color: "#2A2820", letterSpacing: "0.14em", textTransform: "uppercase" }}>Sister Brand</span>
+                <span style={{ fontSize: "9.5px", color: "#A89968", letterSpacing: "0.14em", textTransform: "uppercase" }}>Sister Brand</span>
               </div>
 
-              <p style={{ fontSize: "14px", color: "#5A5650", lineHeight: 1.75, marginBottom: "22px" }}>{brand.description}</p>
+              <p style={{ fontSize: "14px", color: "#6A6458", lineHeight: 1.75, marginBottom: "22px" }}>{brand.description}</p>
 
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px 20px", marginBottom: "22px" }}>
                 {brand.services.map((item) => (
@@ -100,7 +100,7 @@ export default function SisterBrands() {
               </div>
 
               <div style={{ paddingTop: "16px", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
-                <span style={{ fontSize: "12px", color: "#3A3630" }}>{brand.stat}</span>
+                <span style={{ fontSize: "12px", color: "#4A4438" }}>{brand.stat}</span>
               </div>
             </div>
           ))}
@@ -120,13 +120,13 @@ export default function SisterBrands() {
             background: "radial-gradient(ellipse 50% 80% at 50% 50%, rgba(201,168,76,0.04) 0%, transparent 70%)",
             pointerEvents: "none",
           }} />
-          <p style={{ fontSize: "10.5px", color: "#C9A84C", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "12px", fontWeight: 600 }}>The Advantage</p>
+          <p style={{ fontSize: "10.5px", color: "#D4A83A", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "12px", fontWeight: 600 }}>The Advantage</p>
           <h3 style={{
             fontFamily: "var(--font-playfair), serif",
             fontSize: "clamp(1.2rem, 2.2vw, 1.7rem)",
             color: "#EDE8DF", fontWeight: 700, marginBottom: "12px", lineHeight: 1.3,
           }}>Strategy + Visuals + Execution — All Under One Roof</h3>
-          <p style={{ fontSize: "14.5px", color: "#5A5650", lineHeight: 1.75, maxWidth: "520px", margin: "0 auto" }}>
+          <p style={{ fontSize: "14.5px", color: "#6A6458", lineHeight: 1.75, maxWidth: "520px", margin: "0 auto" }}>
             Most agencies outsource photography and video. We own our creative studios — one unified look, faster turnaround, no gaps.
           </p>
         </div>
