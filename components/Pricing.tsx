@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const plans = [
   {
-    name: "Starter", subtitle: "For new businesses", price: 15000,
+    name: "Starter", subtitle: "For new businesses", price: 30000,
     description: "Get your digital presence running with professional content and basic social media management.",
     features: [
       { text: "Social media management (1 platform)", included: true },
@@ -20,7 +20,7 @@ const plans = [
     cta: "Get Started", popular: false,
   },
   {
-    name: "Growth", subtitle: "Most popular", price: 35000,
+    name: "Growth", subtitle: "Most popular", price: 60000,
     description: "Full social media management, paid ads, and professional content — everything you need to grow fast.",
     features: [
       { text: "Social media management (2 platforms)", included: true },
@@ -35,7 +35,7 @@ const plans = [
     cta: "Start Growing", popular: true,
   },
   {
-    name: "Full-Service", subtitle: "Complete transformation", price: 75000,
+    name: "Full-Service", subtitle: "Complete transformation", price: 100000,
     description: "The complete Korra system — strategy, visuals, ads, web, and branding all handled for you.",
     features: [
       { text: "Social media management (all platforms)", included: true },

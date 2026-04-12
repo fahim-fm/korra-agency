@@ -294,12 +294,9 @@ export default function Contact() {
 
             <div>
               {/* Logo */}
-              <a href="#" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none", flexShrink: 0, padding: "8px", background: "linear-gradient(135deg, #D4A83A, #F0C84A)", borderRadius: "8px", marginBottom: "14px" }}>
-                <img src="/korraa.png" alt="Korra" style={{ height: "50px", width: "auto" }} />
+              <a href="#" style={{ display: "flex", alignItems: "center", textDecoration: "none", flexShrink: 0, marginBottom: "14px" }}>
+                <img src="/kora.png" alt="Korra" style={{ height: "50px", width: "auto" }} />
               </a>
-              <p style={{ fontSize: "13.5px", color: "#4A4438", lineHeight: 1.8, maxWidth: "300px", marginBottom: "16px" }}>
-                Full-service digital marketing helping local businesses grow in the digital space.
-              </p>
               <p style={{ fontSize: "13.5px", color: "#4A4438", lineHeight: 1.8, maxWidth: "300px", marginBottom: "16px" }}>
                 Full-service digital marketing helping local businesses grow in the digital space.
               </p>
