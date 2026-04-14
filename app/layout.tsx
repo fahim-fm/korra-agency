@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   title: "Korra Marketing Agency — Digital Marketing & Content Creation",
   description: "Full-service digital marketing and content creation agency helping local businesses grow in the digital space.",
   viewport: "width=device-width, initial-scale=1, maximum-scale=5",
+  icons: {
+    icon: "/favicon.png",
+  },
+  themeColor: "#1877F2",
 };
 
 export default function RootLayout({
