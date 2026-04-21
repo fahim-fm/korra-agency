@@ -142,11 +142,11 @@ export default function Services() {
             fontSize: "clamp(1.8rem, 3.5vw, 2.7rem)",
             color: "#EDE8DF", fontWeight: 700, lineHeight: 1.2, marginBottom: "12px",
           }}>
-            Services Built for{" "}
-            <span style={{ color: "#D4A83A", fontStyle: "italic" }}>Real Growth</span>
+            Our{" "}
+            <span style={{ color: "#D4A83A", fontStyle: "italic" }}>Services</span>
           </h2>
           <p style={{ fontSize: "15px", color: "#6A6458", maxWidth: "420px", margin: "0 auto 28px", lineHeight: 1.75 }}>
-            Every service is designed around one goal — measurable growth for your business.
+            Every service is designed around one goal measurable growth for your business.
           </p>
 
           {/* Filter buttons */}

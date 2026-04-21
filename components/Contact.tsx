@@ -111,11 +111,11 @@ export default function Contact() {
               </p>
 
               <div style={{ display: "flex", flexDirection: "column", gap: "18px", marginBottom: "32px" }}>
-                {[
-                  { label: "Email", value: "hello@korraagency.com" },
-                  { label: "WhatsApp", value: "+880 1XXX-XXXXXX" },
-                  { label: "Location", value: "Dhaka, Bangladesh" },
-                  { label: "Working Hours", value: "Sunday – Thursday, 9AM – 7PM" },
+                 {[
+                   { label: "Email", value: "korramarketinagenciy@gmail.com" },
+                   { label: "WhatsApp", value: "+880 199-1791582, +880 173-4685391" },
+                   { label: "Location", value: "Planet SR Shopping Mall, Khandirpar, Cumilla" },
+                   { label: "Working Hours", value: "Sunday – Thursday, 9AM – 7PM" },
                 ].map((item) => (
                   <div key={item.label}>
                     <p style={{ fontSize: "10px", color: "#A89968", letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 500, marginBottom: "3px" }}>{item.label}</p>
@@ -368,7 +368,7 @@ export default function Contact() {
       </footer>
 
       {/* WhatsApp FAB */}
-      <a href="https://wa.me/8801XXXXXXXXX" target="_blank" rel="noopener noreferrer"
+       <a href="https://wa.me/8801991791582" target="_blank" rel="noopener noreferrer"
         title="Chat on WhatsApp"
         style={{
           position: "fixed", bottom: "24px", right: "24px", zIndex: 200,

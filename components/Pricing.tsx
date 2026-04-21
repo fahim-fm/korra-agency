@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const plans = [
   {
-    name: "Starter", subtitle: "For new businesses", price: 30000,
+    name: "Starter", subtitle: "For new businesses", price: 40000,
     description: "Get your digital presence running with professional content and basic social media management.",
     features: [
       { text: "Social media management (1 platform)", included: true },

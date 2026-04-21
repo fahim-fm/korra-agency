@@ -95,7 +95,8 @@ export default function Hero() {
           Into Digital Brands.
         </h1>
 
-        {/* Subtext — lighter, more readable */}
+        
+         {/* Subtext — lighter, more readable */}
         <p style={{
           fontSize: "clamp(1rem, 2.2vw, 1.15rem)",
           color: "#A09880",
@@ -104,10 +105,8 @@ export default function Hero() {
           margin: "0 auto 44px",
           animation: "fadeUp 0.7s ease 0.35s both",
         }}>
-          Creative storytelling. Professional visuals. Data-driven strategy.
-          We build systems that{" "}
-          <span style={{ color: "#D4CEC4", fontWeight: 500 }}>attract, engage, and convert</span>{" "}
-          real customers for your business.
+           Korra Marketing Agency is a creative marketing and content production agency focused on helping{" "}
+           <span style={{ color: "#D4CEC4", fontWeight: 500 }}>local businesses grow into powerful, recognizable brands</span>.
         </p>
 
         {/* CTA buttons */}
