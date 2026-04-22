@@ -4,6 +4,7 @@ import Stats from "@/components/Stats";
 import Services from "@/components/Services";
 import Approach from "@/components/Approach";
 import Portfolio from "@/components/Portfolio";
+import WhyKorra from "@/components/WhyKorra";
 import SisterBrands from "@/components/SisterBrands";
 import Team from "@/components/Team";
 import Testimonials from "@/components/Testimonials";
@@ -19,6 +20,7 @@ export default function Home() {
       <Services />
       <Approach />
       <Portfolio />
+      <WhyKorra />
       <SisterBrands />
       <Team />
       <Testimonials />
