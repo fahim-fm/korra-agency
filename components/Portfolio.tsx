@@ -537,7 +537,7 @@ function GalleryOverlay({
   onClose,
 }: {
   cat: string;
-  items: typeof projects;
+  items: typeof PROJECTS;
   onClose: () => void;
 }) {
   // Trap body scroll
