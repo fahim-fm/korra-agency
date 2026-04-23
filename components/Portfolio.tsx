@@ -2,58 +2,43 @@
 
 import { useState, useEffect, useCallback } from "react";
 
-const CATS = ["All", "Photography", "Social Media", "Branding", "Ads"] as const;
+const CATS = ["All", "Photography", "Social Media", "Branding", "Ads", "Events"] as const;
 
 const projects = [
   {
     id: 1,
-    image: "/portfolio/project-1.jpg",
+    image: "/assets/photo.png",
     title: "Restaurant Brand Shoot",
     client: "Local Food Brand",
     category: "Photography",
-    description: "Full food photography and brand content shoot for a premium restaurant launch.",
-    result: "3× increase in Instagram engagement",
-    tags: ["Food Photography", "Content"],
   },
   {
     id: 2,
-    image: "/portfolio/project-2.jpg",
+    image: "/assets/photo.png",
     title: "Social Media Growth Campaign",
     client: "Retail Fashion Brand",
     category: "Social Media",
-    description: "Complete social media overhaul — strategy, content, and community management.",
-    result: "0 to 10K followers in 90 days",
-    tags: ["Instagram", "Facebook"],
   },
   {
     id: 3,
-    image: "/portfolio/project-3.jpg",
+    image: "/assets/photo.png",
     title: "Brand Identity Redesign",
     client: "F&B Startup",
     category: "Branding",
-    description: "Logo, color system, typography, and full brand guidelines from scratch.",
-    result: "Brand recognition up 60%",
-    tags: ["Logo", "Brand Guidelines"],
   },
   {
     id: 4,
-    image: "/portfolio/project-4.jpg",
+    image: "/assets/photo.png",
     title: "Meta Ads — Lead Generation",
     client: "Real Estate Agency",
     category: "Ads",
-    description: "Full Meta ads campaign targeting local property buyers with retargeting funnel.",
-    result: "৳50K spend → ৳4.2L revenue",
-    tags: ["Meta Ads", "Lead Gen"],
   },
   {
     id: 5,
-    image: "/portfolio/project-5.jpg",
-    title: "Product Launch Content",
-    client: "Beauty Brand",
+    image: "/portfolio/halal.jpg",
+    title: "Product Photography",
+    client: "Halal Brothers",
     category: "Photography",
-    description: "Professional product photography and short-form video content for launch campaign.",
-    result: "Sold out in first 2 weeks",
-    tags: ["Product Photography", "Video"],
   },
   {
     id: 6,
@@ -61,9 +46,6 @@ const projects = [
     title: "Full Digital Presence",
     client: "Cafe Chain",
     category: "Social Media",
-    description: "Social media, photography, ads, and website — complete digital transformation.",
-    result: "200% increase in footfall",
-    tags: ["Full Service", "Ads"],
   },
   {
     id: 7,
@@ -71,9 +53,6 @@ const projects = [
     title: "Conversion Ad Campaign",
     client: "E-Commerce Store",
     category: "Ads",
-    description: "Targeted Facebook & Instagram ads with A/B tested creatives and retargeting sequences.",
-    result: "4.8× ROAS achieved",
-    tags: ["Facebook Ads", "Retargeting"],
   },
   {
     id: 8,
@@ -81,9 +60,20 @@ const projects = [
     title: "Restaurant Logo & Brand Kit",
     client: "Street Food Brand",
     category: "Branding",
-    description: "Complete visual identity — logo, menu design, packaging, and brand guidelines.",
-    result: "Brand became locally recognizable",
-    tags: ["Logo", "Packaging"],
+  },
+  {
+    id: 9,
+    image: "/portfolio/project-9.jpg",
+    title: "Corporate Gala Coverage",
+    client: "Tech Summit 2024",
+    category: "Events",
+  },
+  {
+    id: 10,
+    image: "/portfolio/project-10.jpg",
+    title: "Wedding Photography Package",
+    client: "Premium Events Co.",
+    category: "Events",
   },
 ];
 
@@ -107,11 +97,12 @@ function CategoryCard({
     return () => clearTimeout(t);
   }, [index]);
 
-  const catEmoji: Record<string, string> = {
-    Photography: "📷",
-    "Social Media": "📱",
-    Branding: "✦",
-    Ads: "⚡",
+  const catLogos: Record<string, string> = {
+    Photography: "/assets/photo.png",
+    "Social Media": "/assets/social.png",
+    Branding: "/assets/branding.png",
+    Ads: "/assets/ads.png",
+    Events: "/assets/events.png",
   };
 
   return (
@@ -180,12 +171,20 @@ function CategoryCard({
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: "20px",
               transition: "transform 0.3s",
               transform: hovered ? "scale(1.1)" : "scale(1)",
+              overflow: "hidden",
             }}
           >
-            {catEmoji[cat] ?? "◈"}
+            <img
+              src={catLogos[cat] ?? "/assets/photo.png"}
+              alt={cat}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
           </div>
           <div
             style={{
@@ -291,7 +290,191 @@ const catDesc: Record<string, string> = {
   "Social Media": "Full page management, content creation, and community growth campaigns.",
   Branding: "Logo design, visual identity, and brand guidelines built from scratch.",
   Ads: "Data-driven Meta ad campaigns engineered to generate real revenue.",
+  Events: "Professional event coverage, live photography, and memorable moments captured.",
 };
+
+// ─── IMAGE PREVIEW MODAL ──────────────────────────────────────────────────────
+function ImagePreviewModal({
+  project,
+  onClose,
+}: {
+  project: (typeof projects)[0];
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [onClose]);
+
+  return (
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 500,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        animation: "fadeIn 0.3s ease-out",
+      }}
+    >
+      {/* Backdrop */}
+      <div
+        onClick={onClose}
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "rgba(8,6,4,0.95)",
+          backdropFilter: "blur(8px)",
+        }}
+      />
+
+      {/* Modal Content */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 501,
+          maxWidth: "90vw",
+          maxHeight: "90vh",
+          display: "flex",
+          flexDirection: "column",
+          animation: "scaleIn 0.4s cubic-bezier(0.22,1,0.36,1)",
+        }}
+      >
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          style={{
+            position: "absolute",
+            top: "-50px",
+            right: 0,
+            width: "40px",
+            height: "40px",
+            borderRadius: "8px",
+            border: "1px solid rgba(255,255,255,0.1)",
+            background: "transparent",
+            color: "#8A8070",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "20px",
+            transition: "all 0.25s",
+            zIndex: 502,
+          }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.borderColor =
+              "rgba(212,168,58,0.4)";
+            (e.currentTarget as HTMLElement).style.color = "#D4A83A";
+            (e.currentTarget as HTMLElement).style.background =
+              "rgba(212,168,58,0.1)";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.borderColor =
+              "rgba(255,255,255,0.1)";
+            (e.currentTarget as HTMLElement).style.color = "#8A8070";
+            (e.currentTarget as HTMLElement).style.background = "transparent";
+          }}
+        >
+          ✕
+        </button>
+
+        {/* Image Container */}
+        <div
+          style={{
+            background: "#13110E",
+            borderRadius: "12px",
+            overflow: "hidden",
+            border: "1px solid rgba(212,168,58,0.2)",
+            boxShadow: "0 20px 60px rgba(0,0,0,0.8)",
+          }}
+        >
+          <img
+            src={project.image}
+            alt={project.title}
+            style={{
+              width: "100%",
+              height: "auto",
+              maxHeight: "75vh",
+              objectFit: "contain",
+              display: "block",
+            }}
+          />
+        </div>
+
+        {/* Info Section */}
+        <div
+          style={{
+            marginTop: "20px",
+            textAlign: "center",
+          }}
+        >
+          <p
+            style={{
+              fontSize: "11px",
+              color: "#D4A83A",
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              fontWeight: 600,
+              marginBottom: "6px",
+            }}
+          >
+            {project.client}
+          </p>
+          <h2
+            style={{
+              fontFamily: "var(--font-playfair), serif",
+              fontSize: "clamp(1.3rem, 3vw, 1.8rem)",
+              color: "#EDE8DF",
+              fontWeight: 700,
+              marginBottom: "8px",
+              lineHeight: 1.2,
+            }}
+          >
+            {project.title}
+          </h2>
+          <p
+            style={{
+              fontSize: "12px",
+              color: "#A89968",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+            }}
+          >
+            {project.category}
+          </p>
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+      `}</style>
+    </div>
+  );
+}
 
 // ─── SMALL PROJECT CARD inside the gallery overlay ────────────────────────────
 function GalleryCard({
@@ -303,6 +486,7 @@ function GalleryCard({
 }) {
   const [imgError, setImgError] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [previewOpen, setPreviewOpen] = useState(false);
 
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), index * 60);
@@ -310,158 +494,120 @@ function GalleryCard({
   }, [index]);
 
   return (
-    <div
-      className="card-hover"
-      style={{
-        background: "#1A1713",
-        border: "1px solid rgba(255,255,255,0.09)",
-        borderRadius: "12px",
-        overflow: "hidden",
-        opacity: mounted ? 1 : 0,
-        transform: mounted ? "translateY(0)" : "translateY(12px)",
-        transition: `opacity 0.35s ease ${index * 0.05}s, transform 0.35s ease ${index * 0.05}s`,
-      }}
-    >
-      {/* Image */}
+    <>
       <div
+        className="card-hover"
+        onClick={() => setPreviewOpen(true)}
         style={{
-          height: "clamp(130px,15vw,170px)",
-          background: "#13110E",
-          position: "relative",
+          background: "#1A1713",
+          border: "1px solid rgba(255,255,255,0.09)",
+          borderRadius: "12px",
           overflow: "hidden",
+          opacity: mounted ? 1 : 0,
+          transform: mounted ? "translateY(0)" : "translateY(12px)",
+          transition: `opacity 0.35s ease ${index * 0.05}s, transform 0.35s ease ${index * 0.05}s`,
+          display: "flex",
+          flexDirection: "column",
+          cursor: "pointer",
+          height: "100%",
         }}
       >
-        {!imgError ? (
-          <img
-            src={project.image}
-            alt={project.title}
-            onError={() => setImgError(true)}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          />
-        ) : (
+        {/* Image - fixed size */}
+        <div
+          style={{
+            width: "100%",
+            height: "320px",
+            background: "#13110E",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          {!imgError ? (
+            <img
+              src={project.image}
+              alt={project.title}
+              onError={() => setImgError(true)}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                transition: "transform 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.transform = "scale(1.05)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.transform = "scale(1)";
+              }}
+            />
+          ) : (
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                background:
+                  "radial-gradient(circle at 50% 50%, rgba(212,168,58,0.06) 0%, transparent 60%)",
+              }}
+            >
+              <span
+                style={{
+                  fontSize: "10px",
+                  color: "#A89968",
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                }}
+              >
+                {project.category}
+              </span>
+            </div>
+          )}
           <div
             style={{
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              position: "absolute",
+              inset: 0,
               background:
-                "radial-gradient(circle at 50% 50%, rgba(212,168,58,0.06) 0%, transparent 60%)",
-            }}
-          >
-            <span
-              style={{
-                fontSize: "10px",
-                color: "#A89968",
-                letterSpacing: "0.16em",
-                textTransform: "uppercase",
-              }}
-            >
-              {project.category}
-            </span>
-          </div>
-        )}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(to top, rgba(19,17,14,0.7) 0%, transparent 55%)",
-            pointerEvents: "none",
-          }}
-        />
-      </div>
-
-      <div style={{ padding: "18px 20px 20px" }}>
-        <p
-          style={{
-            fontSize: "9.5px",
-            color: "#D4A83A",
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            fontWeight: 600,
-            marginBottom: "4px",
-          }}
-        >
-          {project.client}
-        </p>
-        <h3
-          style={{
-            fontSize: "0.975rem",
-            color: "#DDD8CE",
-            fontWeight: 600,
-            marginBottom: "7px",
-            lineHeight: 1.35,
-          }}
-        >
-          {project.title}
-        </h3>
-        <p
-          style={{
-            fontSize: "13px",
-            color: "#5A5448",
-            lineHeight: 1.7,
-            marginBottom: "12px",
-          }}
-        >
-          {project.description}
-        </p>
-
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "7px",
-            padding: "6px 10px",
-            background: "rgba(212,168,58,0.07)",
-            border: "1px solid rgba(212,168,58,0.14)",
-            borderRadius: "6px",
-            marginBottom: "12px",
-          }}
-        >
-          <span
-            style={{
-              width: "4px",
-              height: "4px",
-              borderRadius: "50%",
-              background: "#D4A83A",
-              flexShrink: 0,
+                "linear-gradient(to top, rgba(19,17,14,0.7) 0%, transparent 55%)",
+              pointerEvents: "none",
             }}
           />
-          <span
-            style={{
-              fontSize: "12px",
-              color: "#9A8A50",
-              fontWeight: 500,
-            }}
-          >
-            {project.result}
-          </span>
         </div>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              style={{
-                fontSize: "10px",
-                color: "#4A4438",
-                border: "1px solid rgba(255,255,255,0.07)",
-                padding: "3px 8px",
-                borderRadius: "4px",
-              }}
-            >
-              {tag}
-            </span>
-          ))}
+        <div style={{ padding: "12px 14px" }}>
+          <p
+            style={{
+              fontSize: "9.5px",
+              color: "#D4A83A",
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              fontWeight: 600,
+              marginBottom: "3px",
+            }}
+          >
+            {project.client}
+          </p>
+          <h3
+            style={{
+              fontSize: "0.95rem",
+              color: "#DDD8CE",
+              fontWeight: 600,
+              lineHeight: 1.3,
+            }}
+          >
+            {project.title}
+          </h3>
         </div>
       </div>
-    </div>
+
+      {previewOpen && (
+        <ImagePreviewModal
+          project={project}
+          onClose={() => setPreviewOpen(false)}
+        />
+      )}
+    </>
   );
 }
 
