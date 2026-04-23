@@ -1,81 +1,12 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-
-const CATS = ["All", "Photography", "Social Media", "Branding", "Ads", "Events"] as const;
-
-const projects = [
-  {
-    id: 1,
-    image: "/assets/photo.png",
-    title: "Restaurant Brand Shoot",
-    client: "Local Food Brand",
-    category: "Photography",
-  },
-  {
-    id: 2,
-    image: "/assets/photo.png",
-    title: "Social Media Growth Campaign",
-    client: "Retail Fashion Brand",
-    category: "Social Media",
-  },
-  {
-    id: 3,
-    image: "/assets/photo.png",
-    title: "Brand Identity Redesign",
-    client: "F&B Startup",
-    category: "Branding",
-  },
-  {
-    id: 4,
-    image: "/assets/photo.png",
-    title: "Meta Ads — Lead Generation",
-    client: "Real Estate Agency",
-    category: "Ads",
-  },
-  {
-    id: 5,
-    image: "/portfolio/halal.jpg",
-    title: "Product Photography",
-    client: "Halal Brothers",
-    category: "Photography",
-  },
-  {
-    id: 6,
-    image: "/portfolio/project-6.jpg",
-    title: "Full Digital Presence",
-    client: "Cafe Chain",
-    category: "Social Media",
-  },
-  {
-    id: 7,
-    image: "/portfolio/project-7.jpg",
-    title: "Conversion Ad Campaign",
-    client: "E-Commerce Store",
-    category: "Ads",
-  },
-  {
-    id: 8,
-    image: "/portfolio/project-8.jpg",
-    title: "Restaurant Logo & Brand Kit",
-    client: "Street Food Brand",
-    category: "Branding",
-  },
-  {
-    id: 9,
-    image: "/portfolio/project-9.jpg",
-    title: "Corporate Gala Coverage",
-    client: "Tech Summit 2024",
-    category: "Events",
-  },
-  {
-    id: 10,
-    image: "/portfolio/project-10.jpg",
-    title: "Wedding Photography Package",
-    client: "Premium Events Co.",
-    category: "Events",
-  },
-];
+import {
+  CATEGORIES,
+  CATEGORY_DESCRIPTIONS,
+  CATEGORY_LOGOS,
+  PROJECTS,
+} from "@/data/portfolio";
 
 // ─── CATEGORY CARD (shown in the main grid) ───────────────────────────────────
 function CategoryCard({
@@ -97,13 +28,7 @@ function CategoryCard({
     return () => clearTimeout(t);
   }, [index]);
 
-  const catLogos: Record<string, string> = {
-    Photography: "/assets/photo.png",
-    "Social Media": "/assets/social.png",
-    Branding: "/assets/branding.png",
-    Ads: "/assets/ads.png",
-    Events: "/assets/events.png",
-  };
+
 
   return (
     <button
@@ -177,7 +102,7 @@ function CategoryCard({
             }}
           >
             <img
-              src={catLogos[cat] ?? "/assets/photo.png"}
+              src={CATEGORY_LOGOS[cat] ?? "/assets/photo.png"}
               alt={cat}
               style={{
                 width: "100%",
@@ -242,7 +167,7 @@ function CategoryCard({
               lineHeight: 1.65,
             }}
           >
-            {catDesc[cat]}
+            {CATEGORY_DESCRIPTIONS[cat]}
           </p>
         </div>
 
@@ -285,20 +210,14 @@ function CategoryCard({
   );
 }
 
-const catDesc: Record<string, string> = {
-  Photography: "Food, product, and brand photography that makes your business look world-class.",
-  "Social Media": "Full page management, content creation, and community growth campaigns.",
-  Branding: "Logo design, visual identity, and brand guidelines built from scratch.",
-  Ads: "Data-driven Meta ad campaigns engineered to generate real revenue.",
-  Events: "Professional event coverage, live photography, and memorable moments captured.",
-};
+
 
 // ─── IMAGE PREVIEW MODAL ──────────────────────────────────────────────────────
 function ImagePreviewModal({
   project,
   onClose,
 }: {
-  project: (typeof projects)[0];
+  project: (typeof PROJECTS)[0];
   onClose: () => void;
 }) {
   useEffect(() => {
@@ -481,7 +400,7 @@ function GalleryCard({
   project,
   index,
 }: {
-  project: (typeof projects)[0];
+  project: (typeof PROJECTS)[0];
   index: number;
 }) {
   const [imgError, setImgError] = useState(false);
@@ -890,14 +809,14 @@ function GalleryOverlay({
 export default function Portfolio() {
   const [openCat, setOpenCat] = useState<string | null>(null);
 
-  const categories = CATS.filter((c) => c !== "All");
-  const allCount = projects.length;
+  const categories = CATEGORIES.filter((c) => c !== "All");
+  const allCount = PROJECTS.length;
 
   const getCatCount = (cat: string) =>
-    projects.filter((p) => p.category === cat).length;
+    PROJECTS.filter((p) => p.category === cat).length;
 
   const galleryItems = openCat
-    ? projects.filter((p) => p.category === openCat)
+    ? PROJECTS.filter((p) => p.category === openCat)
     : [];
 
   useEffect(() => {
