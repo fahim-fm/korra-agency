@@ -11,9 +11,9 @@ export const CATEGORY_DESCRIPTIONS: Record<string, string> = {
 export const CATEGORY_LOGOS: Record<string, string> = {
   Photography: "/assets/photo.png",
   "Social Media": "/assets/social.png",
-  Branding: "/assets/branding.png",
+  Branding: "/assets/brand.png",
   Ads: "/assets/ads.png",
-  Events: "/assets/events.png",
+  Events: "/assets/event.png",
 };
 
 export interface Project {
@@ -27,8 +27,8 @@ export interface Project {
 export const PROJECTS: Project[] = [
   {
     id: 1,
-    image: "/assets/photo.png",
-    title: "Restaurant Brand Shoot",
+    image: "/portfolio/ads3.jpeg",
+    title: "Food Photography",
     client: "Local Food Brand",
     category: "Photography",
   },
@@ -48,9 +48,9 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 4,
-    image: "/assets/photo.png",
-    title: "Meta Ads — Lead Generation",
-    client: "Real Estate Agency",
+    image: "/portfolio/ads.jpeg",
+    title: "Ator Ad Campaign",
+    client: "Local Shop",
     category: "Ads",
   },
   {
@@ -62,7 +62,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 6,
-    image: "/portfolio/project-6.jpg",
+     image: "/portfolio/halal.jpg",
     title: "Full Digital Presence",
     client: "Cafe Chain",
     category: "Social Media",
@@ -81,18 +81,54 @@ export const PROJECTS: Project[] = [
     client: "Street Food Brand",
     category: "Branding",
   },
-  {
+   {
     id: 9,
-    image: "/portfolio/project-9.jpg",
-    title: "Corporate Gala Coverage",
-    client: "Tech Summit 2024",
+    image: "/portfolio/baiust2.jpeg",
+    title: "University Event",
+    client: "Baiust 2025",
     category: "Events",
   },
   {
     id: 10,
-    image: "/portfolio/project-10.jpg",
-    title: "Wedding Photography Package",
-    client: "Premium Events Co.",
+    image: "/portfolio/school.jpeg",
+    title: "School Event",
+    client: "Carnival 2026",
     category: "Events",
   },
+  {
+    id: 11,
+    image: "/portfolio/baiust.jpeg",
+    title: "University Event",
+    client: "Baiust 2025",
+    category: "Events",
+  },
+   {
+    id: 12,
+    image: "/portfolio/nexter.jpeg",
+    title: "Cumilla 15k Run",
+    client: "NEXERA Foundation",
+    category: "Events",
+  },
+   {
+    id: 13,
+    image: "/portfolio/E3.jpeg",
+    title: "Edu. Miniver",
+    client: "Gold Silver Homes Ltd.",
+    category: "Events",
+  },
+   {
+    id: 14,
+    image: "/portfolio/e4.jpeg",
+    title: "10 years of Excellence",
+    client: "Corporate Event",
+    category: "Events",
+  },
+   {
+    id: 15,
+    image: "/portfolio/ccn.jpeg",
+    title: "Convocation Ceremony",
+    client: "CCN University",
+    category: "Events",
+  },
+ 
 ];
